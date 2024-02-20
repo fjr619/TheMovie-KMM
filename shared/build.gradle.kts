@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -33,14 +34,21 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.sqlDelight.runtime)
             implementation(libs.sqlDelight.coroutine)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx)
         }
 
         androidMain.dependencies {
             implementation(libs.sqlDelight.android)
+            implementation(libs.ktor.client.okhttp)
         }
 
         iosMain.dependencies {
             implementation(libs.sqlDelight.native)
+            implementation(libs.ktor.client.darwin)
         }
 
         commonTest.dependencies {
