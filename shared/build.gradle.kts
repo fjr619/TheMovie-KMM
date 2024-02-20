@@ -39,6 +39,9 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx)
+            implementation(libs.kotlinx.serialization)
+
+            implementation(libs.koin.core)
         }
 
         androidMain.dependencies {
