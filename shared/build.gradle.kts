@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -30,10 +31,28 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(libs.sqlDelight.runtime)
+            implementation(libs.sqlDelight.coroutine)
         }
+
+        androidMain.dependencies {
+            implementation(libs.sqlDelight.android)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.sqlDelight.native)
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("MovieDatabase") {
+            packageName.set("com.fjr619.themovie_kmm")
         }
     }
 }
