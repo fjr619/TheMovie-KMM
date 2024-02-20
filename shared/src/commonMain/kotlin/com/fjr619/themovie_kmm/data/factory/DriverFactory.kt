@@ -7,6 +7,6 @@ expect class DriverFactory {
     fun createDriver(): SqlDriver
 }
 
-expect class ApiService {
+expect class ApiService() {
     fun build(): HttpClient
 }
