@@ -6,10 +6,13 @@ CREATE TABLE MovieList (
     poster_path TEXT NOT NULL
 );
 
+insertMovielist:
 INSERT OR REPLACE INTO MovieList(id, title, overview, popularity, poster_path)
 VALUES(?, ?, ?, ?, ?);
 
+removeMovielist:
 DELETE FROM MovieList;
 
+getMovielist:
 SELECT *
 FROM MovieList;
