@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.kotlinx.serialization)
 }
+apply(plugin = "kotlinx-atomicfu")
 
 kotlin {
     androidTarget {
@@ -44,15 +45,15 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(libs.kotlinx.coroutines.core)
+
+            implementation(libs.datastore.core)
+            implementation(libs.gson)
         }
 
         androidMain.dependencies {
             implementation(libs.sqlDelight.android)
             implementation(libs.ktor.client.okhttp)
-
-            implementation(libs.datastore)
-            implementation(libs.gson)
-
+            implementation(libs.koin.android)
             implementation(libs.kotlinx.coroutines.android)
         }
 
