@@ -42,11 +42,18 @@ kotlin {
             implementation(libs.kotlinx.serialization)
 
             implementation(libs.koin.core)
+
+            implementation(libs.kotlinx.coroutines.core)
         }
 
         androidMain.dependencies {
             implementation(libs.sqlDelight.android)
             implementation(libs.ktor.client.okhttp)
+
+            implementation(libs.datastore)
+            implementation(libs.gson)
+
+            implementation(libs.kotlinx.coroutines.android)
         }
 
         iosMain.dependencies {
