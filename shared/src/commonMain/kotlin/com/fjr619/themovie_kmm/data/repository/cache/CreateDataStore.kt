@@ -24,4 +24,4 @@ fun getDataStore(producePath: () -> String): DataStore<Preferences> =
         }
     }
 
-internal const val dataStoreFileName = "movie_kmm.preferences"
+internal const val dataStoreFileName = "movie_kmm.preferences_pb"

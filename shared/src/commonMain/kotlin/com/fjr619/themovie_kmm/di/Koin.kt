@@ -14,6 +14,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
     modules(
         platformModule(),
+        datastoreModuleByPlatform(),
         sharedModule
     )
 }

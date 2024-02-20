@@ -3,14 +3,24 @@ package com.fjr619.themovie_kmm.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.fjr619.themovie_kmm.Greeting
+import com.fjr619.themovie_kmm.data.repository.cache.AppPreferences
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+
+    val appPreferences: AppPreferences by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -19,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingView(Greeting().greet())
+                    GreetingView(appPreferences, Greeting().greet())
                 }
             }
         }
@@ -27,14 +37,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingView(text: String) {
-    Text(text = text)
+fun GreetingView(appPreferences: AppPreferences, text: String) {
+
+    val a by appPreferences.getData<Boolean>("Test", false).collectAsState(initial = false)
+    val scope = rememberCoroutineScope()
+    Row {
+        Text(text = "$text ${a}")
+
+        Button(onClick = {
+            scope.launch {
+                appPreferences.putData("Test", true)
+            }
+        }) {
+            Text(text = "true")
+        }
+
+        Button(onClick = {
+            scope.launch {
+                appPreferences.putData("Test", false)
+            }
+        }) {
+            Text(text = "false")
+        }
+    }
+
+
 }
 
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
-    }
-}
+//@Preview
+//@Composable
+//fun DefaultPreview() {
+//    MyApplicationTheme {
+//        GreetingView("Hello, Android!")
+//    }
+//}

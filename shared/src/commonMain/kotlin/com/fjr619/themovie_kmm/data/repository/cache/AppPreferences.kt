@@ -37,7 +37,7 @@ class AppPreferences(
         }
     }
 
-    inline fun <reified T> getData(key: String): Flow<T> {
+    inline fun <reified T> getData(key: String, default: T): Flow<T> {
         return dataStore.data.catch { exception ->
             if (exception is IOException) {
 //                Log.e("DataStore", "Error reading preferences.", exception)
@@ -47,9 +47,13 @@ class AppPreferences(
             }
         }.map { preferences ->
             val jsonString = preferences[stringPreferencesKey(key)]
-//            val elements = GsonBuilder().create().fromJson(jsonString, T::class.java)
-            val elements = Json.decodeFromString<T>(jsonString!!)
-            elements
+            if (jsonString != null) {
+                //            val elements = GsonBuilder().create().fromJson(jsonString, T::class.java)
+                val elements = Json.decodeFromString<T>(jsonString)
+                elements
+            } else {
+                default
+            }
         }
     }
 }
