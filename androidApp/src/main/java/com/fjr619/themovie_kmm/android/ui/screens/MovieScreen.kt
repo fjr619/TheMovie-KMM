@@ -42,7 +42,7 @@ fun MovieScreen(viewModel: MovieListViewModel = koinViewModel()) {
     ) {
         val modifier = Modifier.padding(it)
         when (val async = moviesAsync) {
-            is MovieListState.Error -> ErrorScreen(modifier) {
+            is MovieListState.Error -> ErrorScreen(modifier, async.exceptionMessage) {
                 viewModel.loadMovies()
             }
 
@@ -61,7 +61,9 @@ fun MovieScreen(viewModel: MovieListViewModel = koinViewModel()) {
 
 @Composable
 fun ErrorScreen(
-    modifier: Modifier = Modifier, onTryAgain: () -> Unit
+    modifier: Modifier = Modifier,
+    message: String?,
+    onTryAgain: () -> Unit,
 ) {
     Column(
         modifier
@@ -79,7 +81,7 @@ fun ErrorScreen(
             modifier = Modifier.height(16.dp)
         )
         Text(
-            text = "Cannot proceed your request, please try again!"
+            text = message ?: "Cannot proceed your request, please try again!"
         )
         Spacer(
             modifier = Modifier.height(16.dp)

@@ -15,6 +15,12 @@ internal fun singleSourceOfTruth(
     val localData = getLocalData()
     if (localData.isNotEmpty()) {
         emit(localData)
+
+        val remoteData = getRemoteData()
+        if (remoteData.isNotEmpty()) {
+            saveDataToLocal(remoteData)
+        }
+
     } else {
         val remoteData = getRemoteData()
         if (remoteData.isNotEmpty()) {

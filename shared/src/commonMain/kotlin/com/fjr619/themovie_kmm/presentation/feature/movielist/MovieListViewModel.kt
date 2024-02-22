@@ -2,6 +2,7 @@ package com.fjr619.themovie_kmm.presentation.feature.movielist
 
 import com.fjr619.themovie_kmm.data.util.APIConstants
 import com.fjr619.themovie_kmm.domain.entity.Movie
+import com.fjr619.themovie_kmm.domain.entity.RequestException
 import com.fjr619.themovie_kmm.domain.usecases.MovieListUseCase
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.github.oshai.kotlinlogging.KLogger
@@ -33,7 +34,9 @@ class MovieListViewModel constructor(
                 movieListUseCase.getMovieList(APIConstants.POPULAR_MOVIES, 20).collect{ movies ->
                     moviesMutable.value = MovieListState.Success(movies)
                 }
-
+            } catch (e: RequestException) {
+                e.printStackTrace()
+                moviesMutable.value = MovieListState.Error(e.message)
             } catch (e: Exception) {
                 e.printStackTrace()
                 moviesMutable.value = MovieListState.Error(e.message.orEmpty())
