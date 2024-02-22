@@ -14,7 +14,7 @@ import org.koin.dsl.module
 actual fun platformModule(): Module = module {
     single { DriverFactory(get()) }
     single { OkHttp.create() }
-    viewModel { MovieListViewModel(get()) }
+    viewModel { MovieListViewModel(get(), get()) }
 }
 
 actual fun datastoreModuleByPlatform() = module {

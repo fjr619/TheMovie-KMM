@@ -10,6 +10,7 @@ import com.fjr619.themovie_kmm.data.source.remote.datasourceimpl.MovieListRemote
 import com.fjr619.themovie_kmm.data.util.APIConstants
 import com.fjr619.themovie_kmm.domain.repository.MovieListRepository
 import com.fjr619.themovie_kmm.domain.usecases.MovieListUseCase
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -28,6 +29,7 @@ import org.koin.dsl.module
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
     modules(
+        loggerModule,
         platformModule(),
         datasourceModule,
         datastoreModuleByPlatform(),
@@ -39,15 +41,21 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
 // called by iOS etc
 fun initKoin() = initKoin {}
 
+val loggerModule = module {
+    single {
+        KotlinLogging.logger {}
+    }
+}
+
 val datasourceModule = module {
     single { MovieDatabase.invoke((get() as DriverFactory).createDriver()) }
     single<MovieRemoteDataSource> { MovieListRemoteDataSourceImpl(get()) }
     single<MovieLocalDataSource> { MovieLocalDataSourceImpl(get()) }
-    single<MovieListRepository> { MovieListRepositoryImpl(get(), get(), get()) }
+    single<MovieListRepository> { MovieListRepositoryImpl(get(), get(), get(), get()) }
 }
 
 val useCaseModule = module {
-    factory { MovieListUseCase(get()) }
+    factory { MovieListUseCase(get(), get()) }
 }
 
 val networkModule = module {

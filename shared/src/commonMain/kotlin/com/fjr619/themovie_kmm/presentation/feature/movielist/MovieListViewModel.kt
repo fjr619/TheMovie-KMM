@@ -4,13 +4,15 @@ import com.fjr619.themovie_kmm.data.util.APIConstants
 import com.fjr619.themovie_kmm.domain.entity.Movie
 import com.fjr619.themovie_kmm.domain.usecases.MovieListUseCase
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import io.github.oshai.kotlinlogging.KLogger
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MovieListViewModel constructor(
-    private val movieListUseCase: MovieListUseCase
+    private val movieListUseCase: MovieListUseCase,
+    private val logger: KLogger,
 ): ViewModel() {
 
     private val moviesMutable =

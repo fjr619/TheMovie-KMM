@@ -14,6 +14,8 @@ fun MovieDTO.mapMovieResponse() = Movie(
     popularity = this.popularity,
 )
 
+fun Movie.mapToDto() = MovieDTO(id, title, overview, poster_path, popularity)
+
 fun asDomainMovieEntity(
     id: Long,
     title: String,

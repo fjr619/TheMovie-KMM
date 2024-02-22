@@ -12,8 +12,11 @@ koin = "3.5.3"
 datastore = "1.1.0-beta01"
 gson = "2.10.1"
 coroutines = "1.8.0"
+kotlinLoggingJvm = "6.0.3"
 
 [libraries]
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlinLoggingJvm" }
+
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -38,6 +41,7 @@ kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
 datastore-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }

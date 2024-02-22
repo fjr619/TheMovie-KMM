@@ -16,7 +16,7 @@ import platform.Foundation.NSUserDomainMask
 actual fun platformModule(): Module = module {
     single { DriverFactory() }
     single { Darwin.create() }
-    factory { MovieListViewModel(get()) }
+    factory { MovieListViewModel(get(), get()) }
 }
 
 actual fun datastoreModuleByPlatform() = module {
