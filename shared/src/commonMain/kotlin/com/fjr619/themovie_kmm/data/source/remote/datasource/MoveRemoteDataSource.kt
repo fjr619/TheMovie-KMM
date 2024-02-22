@@ -1,4 +1,4 @@
-package com.fjr619.themovie_kmm.data.repository.remote.datasource
+package com.fjr619.themovie_kmm.data.source.remote.datasource
 
 import com.fjr619.themovie_kmm.data.dto.MovieResponseDTO
 

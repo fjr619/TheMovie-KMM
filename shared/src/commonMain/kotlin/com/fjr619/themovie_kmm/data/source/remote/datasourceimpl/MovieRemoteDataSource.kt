@@ -1,8 +1,7 @@
-package com.fjr619.themovie_kmm.data.repository.remote.datasourceimpl
+package com.fjr619.themovie_kmm.data.source.remote.datasourceimpl
 
 import com.fjr619.themovie_kmm.data.dto.MovieResponseDTO
-import com.fjr619.themovie_kmm.data.factory.ApiService
-import com.fjr619.themovie_kmm.data.repository.remote.datasource.MovieRemoteDataSource
+import com.fjr619.themovie_kmm.data.source.remote.datasource.MovieRemoteDataSource
 import com.fjr619.themovie_kmm.data.util.APIConstants
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

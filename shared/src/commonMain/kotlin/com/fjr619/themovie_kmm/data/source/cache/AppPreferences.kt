@@ -1,4 +1,4 @@
-package com.fjr619.themovie_kmm.data.repository.cache
+package com.fjr619.themovie_kmm.data.source.cache
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
@@ -12,9 +12,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import org.koin.core.component.KoinComponent
-
-@Serializable
-data class Project(val name: String, val language: String)
 
 class AppPreferences(
     val dataStore: DataStore<Preferences>

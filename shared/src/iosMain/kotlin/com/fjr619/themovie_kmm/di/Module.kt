@@ -2,9 +2,9 @@ package com.fjr619.themovie_kmm.di
 
 import com.fjr619.themovie_kmm.data.factory.ApiService
 import com.fjr619.themovie_kmm.data.factory.DriverFactory
-import com.fjr619.themovie_kmm.data.repository.cache.AppPreferences
-import com.fjr619.themovie_kmm.data.repository.cache.dataStoreFileName
-import com.fjr619.themovie_kmm.data.repository.cache.getDataStore
+import com.fjr619.themovie_kmm.data.source.cache.AppPreferences
+import com.fjr619.themovie_kmm.data.source.cache.dataStoreFileName
+import com.fjr619.themovie_kmm.data.source.cache.getDataStore
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import platform.Foundation.NSDocumentDirectory

@@ -1,8 +1,8 @@
-package com.fjr619.themovie_kmm.data.repository.local.datasourceimpl
+package com.fjr619.themovie_kmm.data.source.local.datasourceimpl
 
 import com.fjr619.themovie_kmm.MovieDatabase
 import com.fjr619.themovie_kmm.data.mappers.asDomainMovieEntity
-import com.fjr619.themovie_kmm.data.repository.local.datasource.MovieLocalDataSource
+import com.fjr619.themovie_kmm.data.source.local.datasource.MovieLocalDataSource
 import com.fjr619.themovie_kmm.domain.entity.Movie
 
 class MovieLocalDataSourceImpl(
@@ -25,5 +25,9 @@ class MovieLocalDataSourceImpl(
 
     override fun getPopularMovieListFromLocal(): List<Movie> {
         return queries.getMovielist(mapper = ::asDomainMovieEntity).executeAsList()
+    }
+
+    override fun deleteMovieListFromDB() {
+        queries.removeMovielist()
     }
 }

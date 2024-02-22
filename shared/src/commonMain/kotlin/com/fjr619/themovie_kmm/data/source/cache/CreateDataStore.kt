@@ -1,4 +1,4 @@
-package com.fjr619.themovie_kmm.data.repository.cache
+package com.fjr619.themovie_kmm.data.source.cache
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory

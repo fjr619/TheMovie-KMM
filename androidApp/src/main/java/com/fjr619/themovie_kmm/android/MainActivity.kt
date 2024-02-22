@@ -11,9 +11,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.fjr619.themovie_kmm.Greeting
-import com.fjr619.themovie_kmm.data.repository.cache.AppPreferences
+import com.fjr619.themovie_kmm.data.source.cache.AppPreferences
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
