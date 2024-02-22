@@ -1,6 +1,6 @@
 package com.fjr619.themovie_kmm.data.repository
 
-import com.fjr619.themovie_kmm.base.data.Response
+import com.fjr619.themovie_kmm.data.mappers.mapMovieResponse
 import com.fjr619.themovie_kmm.data.source.cache.AppPreferences
 import com.fjr619.themovie_kmm.data.source.cache.CacheConstants
 import com.fjr619.themovie_kmm.data.source.local.datasource.MovieLocalDataSource
@@ -13,14 +13,16 @@ import kotlinx.coroutines.flow.Flow
 class MovieListRepositoryImpl(
     private val movieListRemoteDataSource: MovieRemoteDataSource,
     private val movieListLocalDataSource: MovieLocalDataSource,
-    private val preferenceDataStore: AppPreferences
+    private val preferenceDataStore: AppPreferences,
 ) : MovieListRepository {
 
     override fun getPopularMovieList(url: String, page: Int): Flow<List<Movie>> =
         singleSourceOfTruth(
             getLocalData = { getPopularMovieListFromLocal() },
             getRemoteData = {
-                movieListRemoteDataSource.getPopularMovieListFromRemote(url, page).movieDataList
+                movieListRemoteDataSource.getPopularMovieListFromRemote(url, page).data.map {
+                    it.mapMovieResponse()
+                }
             },
             saveDataToLocal = { movieList ->
                 movieListLocalDataSource.deleteMovieListFromDB()

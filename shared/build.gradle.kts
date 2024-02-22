@@ -48,6 +48,8 @@ kotlin {
 
             implementation(libs.datastore.core)
             implementation(libs.gson)
+
+            api("dev.icerock.moko:mvvm-core:0.16.1")
         }
 
         androidMain.dependencies {

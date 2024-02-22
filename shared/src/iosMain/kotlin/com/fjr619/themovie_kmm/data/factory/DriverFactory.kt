@@ -20,28 +20,28 @@ actual class DriverFactory {
     }
 }
 
-actual class ApiService {
-    actual fun build(): HttpClient {
-        return HttpClient(Darwin) {
-            engine {
-                configureRequest {
-                }
-            }
-
-            install(ContentNegotiation) {
-                json(
-                    Json {
-                        ignoreUnknownKeys = true
-                        prettyPrint = true
-                        isLenient = true
-                    }
-                )
-            }
-
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.ALL
-            }
-        }
-    }
-}
+//actual class ApiService {
+//    actual fun build(): HttpClient {
+//        return HttpClient(Darwin) {
+//            engine {
+//                configureRequest {
+//                }
+//            }
+//
+//            install(ContentNegotiation) {
+//                json(
+//                    Json {
+//                        ignoreUnknownKeys = true
+//                        prettyPrint = true
+//                        isLenient = true
+//                    }
+//                )
+//            }
+//
+//            install(Logging) {
+//                logger = Logger.DEFAULT
+//                level = LogLevel.ALL
+//            }
+//        }
+//    }
+//}

@@ -21,30 +21,30 @@ actual class DriverFactory(private val context: Context) {
     }
 }
 
-actual class ApiService {
-    actual fun build(): HttpClient {
-        return HttpClient(OkHttp) {
-            engine {
-                config {
-                    retryOnConnectionFailure(true)
-                    connectTimeout(5, TimeUnit.SECONDS)
-                }
-            }
-
-            install(ContentNegotiation) {
-                json(
-                    Json {
-                        ignoreUnknownKeys = true
-                        prettyPrint = true
-                        isLenient = true
-                    }
-                )
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.ALL
-            }
-
-        }
-    }
-}
+//actual class ApiService {
+//    actual fun build(): HttpClient {
+//        return HttpClient(OkHttp) {
+//            engine {
+//                config {
+//                    retryOnConnectionFailure(true)
+//                    connectTimeout(5, TimeUnit.SECONDS)
+//                }
+//            }
+//
+//            install(ContentNegotiation) {
+//                json(
+//                    Json {
+//                        ignoreUnknownKeys = true
+//                        prettyPrint = true
+//                        isLenient = true
+//                    }
+//                )
+//            }
+//            install(Logging) {
+//                logger = Logger.DEFAULT
+//                level = LogLevel.ALL
+//            }
+//
+//        }
+//    }
+//}
